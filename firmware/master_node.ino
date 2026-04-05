@@ -27,8 +27,8 @@ uint8_t slaveYellowMAC[] = {0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF};
 // ══════════════════════════════════════════════════════════════
 // FIXED CONSTANTS
 // ══════════════════════════════════════════════════════════════
-const char* SECRET_KEY = "H4ckath0n_TrU5t_K3y_99!";
-const char* MQTT_BROKER   = "192.168.137.1";
+const char* SECRET_KEY = "<YOUR_SECRET_KEY>";
+const char* MQTT_BROKER   = "<YOUR_BROKER_IP>";
 const int   MQTT_PORT     = 1883;
 const char* MQTT_USERNAME = "refinery_node";
 const char* CLIENT_ID     = "refinery_master";

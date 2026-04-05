@@ -45,10 +45,10 @@ const char* MQTT_PASSWORD = "ChangeMeAtLeast16Chars";  // [OPERATOR FILLS THIS]
 
 // HMAC shared secret
 // PRODUCTION WARNING: Move to ATECC608A HSM before real deployment.
-const char* SECRET_KEY = "H4ckath0n_TrU5t_K3y_99!";
+const char* SECRET_KEY = "<YOUR_SECRET_KEY>";
 
 // MQTT broker
-const char* MQTT_BROKER   = "192.168.137.1";
+const char* MQTT_BROKER   = "<YOUR_BROKER_IP>";
 const int   MQTT_PORT     = 1883;
 const char* MQTT_USERNAME = "refinery_node";
 const char* CLIENT_ID     = "refinery_esp32";

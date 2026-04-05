@@ -20,15 +20,15 @@
 // ══════════════════════════════════════════════════════════════
 #define NODE_PUMP_ID "red" // "red", "blue", "yellow", or "purple"
 
-const char *WIFI_SSID     = "laksh's A35";
-const char *WIFI_PASSWORD = "lakshjain7";
-const char *MQTT_PASSWORD = "lakshlaabh1";
+const char *WIFI_SSID     = "<YOUR_HOTSPOT_SSID>";
+const char *WIFI_PASSWORD = "<YOUR_HOTSPOT_PASSWORD>";
+const char *MQTT_PASSWORD = "<YOUR_MQTT_PASSWORD>";
 
 // ══════════════════════════════════════════════════════════════
 // FIXED CONSTANTS
 // ══════════════════════════════════════════════════════════════
-const char *SECRET_KEY    = "H4ckath0n_TrU5t_K3y_99!";
-const char *MQTT_BROKER   = "172.20.86.22";
+const char *SECRET_KEY    = "<YOUR_SECRET_KEY>";
+const char *MQTT_BROKER   = "<YOUR_BROKER_IP>";
 const int   MQTT_PORT     = 1883;
 const char *MQTT_USERNAME = "refinery_node";
 char        CLIENT_ID[32];

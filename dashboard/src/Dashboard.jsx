@@ -438,7 +438,7 @@ export default function Dashboard() {
     setFocusPanel("right");
     setSystemState(STATES.BREACH);
     addMqtt("cmd/pump", "HMAC_FAIL", "FAKE_HASH_123");
-    addAi("⛔ INTRUSION DETECTED — Raw JSON injection on mqtt://192.168.137.1:1883");
+    addAi("⛔ INTRUSION DETECTED — Raw JSON injection on mqtt://<YOUR_BROKER_IP>:1883");
     addAi("Core 0 cryptographic verification FAILED. Packet dropped. Physical actuation blocked.");
     setActivePumps({ red: false, blue: false, yellow: false });
     setTimeout(() => {
