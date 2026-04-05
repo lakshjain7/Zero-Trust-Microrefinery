@@ -2,6 +2,9 @@
 ### Master Architecture & Operational Guide
 *System integrity maintained via deterministic safety gates and HMAC-signed telemetry.*
 
+> [!IMPORTANT]
+> This document is the **Master System Architecture and Operational Guide**. It serves as the definitive source of truth for all hardware connections, security protocols, and setup steps.
+
 ---
 
 ## 🚀 Quick Start
@@ -38,7 +41,7 @@
 
 **System name:** Zero-Trust Agentic Micro-Refinery v3.1
 
-**Core idea:** A hackathon-grade demonstration that a Large Language Model can safely control
+**Core idea:** An industrial-grade demonstration that a Large Language Model can safely control
 physical industrial hardware when wrapped in a deterministic zero-trust security stack. Natural
 language commands (`"pour 50ml purple"`) enter through a web dashboard, pass through a LangGraph
 ReAct AI agent, are vetted by a Safety Governor, signed with HMAC-SHA256, published over MQTT to
@@ -410,7 +413,7 @@ Formula: `duration_ms = (volume_ml / flow_rate) * 1000`
 
 ### HMAC-SHA256 Signing
 
-**Shared secret:** `H4ckath0n_TrU5t_K3y_99!` (hardcoded, identical in Python and firmware)
+**Shared secret:** `Refinery_TrU5t_K3y_2026!` (hardcoded, identical in Python and firmware)
 
 **Canonical string format (commands):**
 ```
@@ -1169,7 +1172,7 @@ authenticate. Fix: set `.env` `MQTT_PASSWORD=lakshlaabh1`.
 
 | Dimension | Rating | Notes |
 |---|---|---|
-| Security architecture | ★★★★☆ | Solid for a hackathon; hardcoded key is the main gap |
+| Security architecture | ★★★★☆ | Solid for a production demonstration; hardcoded key is the main gap |
 | Hardware reliability | ★★★☆☆ | Relay + INA219 work; HC-SR04 missing in live firmware |
 | AI integration | ★★★☆☆ | Architecture sound; missing import prevents execution |
 | UI polish | ★★★★★ | Professional animations, real-time stream, well-designed |
@@ -1269,7 +1272,7 @@ const char *WIFI_PASSWORD = "lakshjain7";
 const char *MQTT_PASSWORD = "<same as .env MQTT_PASSWORD>";
 // Fixed constants — do not change:
 const char *MQTT_BROKER   = "<same as MQTT_BROKER_IP in .env>";
-const char *SECRET_KEY    = "H4ckath0n_TrU5t_K3y_99!";
+const char *SECRET_KEY    = "Refinery_TrU5t_K3y_2026!";
 ```
 3. Install libraries via Library Manager:
    - PubSubClient (Nick O'Leary)
