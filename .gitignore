@@ -14,7 +14,9 @@ venv.bak/
 
 # Project Specific
 audit.db
+refinery_audit.db
 *.log
 .gemini/
+.claude/
 *.tmp
 /tmp/
