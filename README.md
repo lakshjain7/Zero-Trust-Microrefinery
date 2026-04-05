@@ -157,10 +157,10 @@ hail_marry/
 
 | Variable | Value | Used By |
 |---|---|---|
-| `OPENAI_API_KEY` | `sk-proj-...` | orchestrator.py — LLM API calls |
-| `HOTSPOT_SSID` | `laksh's A35` | Reference only (ESP32 hardcoded) |
-| `HOTSPOT_PASSWORD` | `lakshjain7` | Reference only (ESP32 hardcoded) |
-| `MQTT_BROKER_IP` | `172.20.86.22` | mqtt_client.py |
+| `OPENAI_API_KEY` | `sk-proj-xxxxxxxxxxxxxxxxxxxxxxxx` | orchestrator.py — LLM API calls |
+| `HOTSPOT_SSID` | `<YOUR_WIFI_SSID>` | Reference only (ESP32 hardcoded) |
+| `HOTSPOT_PASSWORD` | `<YOUR_WIFI_PASSWORD>` | Reference only (ESP32 hardcoded) |
+| `MQTT_BROKER_IP` | `<YOUR_BROKER_IP>` | mqtt_client.py |
 | `MQTT_BROKER_PORT` | `1883` | mqtt_client.py |
 | `MQTT_USERNAME` | `refinery_node` | mqtt_client.py + firmware |
 | `MQTT_PASSWORD` | `ChangeMeAtLeast16Chars` | mqtt_client.py (**mismatch — see §16**) |
@@ -413,7 +413,7 @@ Formula: `duration_ms = (volume_ml / flow_rate) * 1000`
 
 ### HMAC-SHA256 Signing
 
-**Shared secret:** `Refinery_TrU5t_K3y_2026!` (hardcoded, identical in Python and firmware)
+**Shared secret:** `<YOUR_SECRET_KEY>` (hardcoded, identical in Python and firmware)
 
 **Canonical string format (commands):**
 ```
@@ -810,8 +810,8 @@ response. The `actuate_pump` tool needs a mock ACK injection to function end-to-
 
 ### Real Hardware Expectations
 
-- ESP32 connects to `MQTT_BROKER` = `172.20.86.22:1883`
-- ESP32 authenticates with `MQTT_USERNAME=refinery_node`, `MQTT_PASSWORD=lakshlaabh1`
+- ESP32 connects to `MQTT_BROKER` = `<YOUR_BROKER_IP>:1883`
+- ESP32 authenticates with `MQTT_USERNAME=refinery_node`, `MQTT_PASSWORD=<YOUR_MQTT_PASSWORD>`
 - Python must connect to the same broker
 - Clock sync (`refinery/cmd/sync`) is sent by Python on MQTT connect
 - ESP32 gates all commands until `clockSynced = true`
@@ -1088,7 +1088,7 @@ The reasoning stream, state transitions, and pump actuation never execute.
 ### MQTT Password Mismatch
 
 - `.env` line 14: `MQTT_PASSWORD=ChangeMeAtLeast16Chars`
-- `esp32_direct_node.ino` line 25: `const char *MQTT_PASSWORD = "lakshlaabh1"`
+- `esp32_direct_node.ino` line 25: `const char *MQTT_PASSWORD = "<YOUR_MQTT_PASSWORD>"`
 
 The broker's `pwfile` must contain the correct password. Since the ESP32 connects successfully,
 the broker accepts `"lakshlaabh1"`. Python uses `"ChangeMeAtLeast16Chars"` → likely fails to
@@ -1231,8 +1231,8 @@ cp .env.example .env
 Edit `.env`:
 ```
 OPENAI_API_KEY=sk-...            # Your OpenAI key
-MQTT_BROKER_IP=<broker IP>       # IP of the machine running Mosquitto
-MQTT_PASSWORD=<your password>    # Must match Mosquitto pwfile AND firmware
+MQTT_BROKER_IP=<YOUR_BROKER_IP>       # IP of the machine running Mosquitto
+MQTT_PASSWORD=<YOUR_MQTT_PASSWORD>    # Must match Mosquitto pwfile AND firmware
 YELLOW_FLOW_RATE_ML_PER_SEC=8.8  # Calibrate with graduated cup test
 POWER_CONSTRAINT_MA=300
 MOCK_MODE=false
@@ -1267,12 +1267,12 @@ For each ESP32:
 ```cpp
 #define NODE_PUMP_ID "red"          // "red", "blue", or "yellow" — unique per board
 
-const char *WIFI_SSID     = "laksh's A35";
-const char *WIFI_PASSWORD = "lakshjain7";
-const char *MQTT_PASSWORD = "<same as .env MQTT_PASSWORD>";
+const char *WIFI_SSID     = "<YOUR_WIFI_SSID>";
+const char *WIFI_PASSWORD = "<YOUR_WIFI_PASSWORD>";
+const char *MQTT_PASSWORD = "<YOUR_MQTT_PASSWORD>";
 // Fixed constants — do not change:
-const char *MQTT_BROKER   = "<same as MQTT_BROKER_IP in .env>";
-const char *SECRET_KEY    = "Refinery_TrU5t_K3y_2026!";
+const char *MQTT_BROKER   = "<YOUR_BROKER_IP>";
+const char *SECRET_KEY    = "<YOUR_SECRET_KEY>";
 ```
 3. Install libraries via Library Manager:
    - PubSubClient (Nick O'Leary)
@@ -1306,8 +1306,8 @@ Expected boot sequence:
 ```
 [INIT] Initializing audit database...
 [INIT] Starting WebSocket server on ws://localhost:8000/ws
-[INIT] Connecting to MQTT broker 172.20.86.22:1883...
-[MQTT] Connected to broker 172.20.86.22:1883
+[INIT] Connecting to MQTT broker <YOUR_BROKER_IP>:1883...
+[MQTT] Connected to broker <YOUR_BROKER_IP>:1883
 [DMS] Dead Man's Switch armed. Timeout: 3.0s
 [BOOT] Step 6: Initializing AI Orchestrator (LangChain/OpenAI)...
 [BOOT] Step 6: SUCCESS (Orchestrator ready)
@@ -1343,7 +1343,7 @@ Expected behavior:
 
 With broker running:
 ```bash
-python attack_demo.py --broker 172.20.86.22 --port 1883
+python attack_demo.py --broker <YOUR_BROKER_IP> --port 1883
 ```
 
 Expected: `✓ ATTACK RESULT: ESP32 REJECTED. PUMP DID NOT FIRE.`
